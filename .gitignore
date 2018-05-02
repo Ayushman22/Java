@@ -1,22 +1,222 @@
-# Compiled class file
-*.class
+import java.awt.*;
 
-# Log file
-*.log
+import java.awt.event.*;
 
-# BlueJ files
-*.ctxt
+import java.io.*;
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+import java.io.RandomAccessFile;
 
-# Package Files #
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
+import java.nio.file.Files;
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+import java.nio.file.Path;
+
+import java.nio.file.Paths;
+
+import java.nio.file.StandardCopyOption;
+
+
+/**
+
+* Main class of the program
+
+*/
+
+public class Main {
+
+    //declaring required fields
+
+    private Frame myFrame;
+
+    private Label topLabel;
+
+    private Label bottomLabel1;
+
+    private Label bottomlabel2;
+
+    private Label errorMessage;
+
+    private Label message;
+
+    private Panel panel1;
+
+    private Panel panel2;
+
+
+    /**
+
+* Constructor of the Main Class
+
+*/
+
+    public Main(){
+
+        makeGui();
+
+    }
+
+
+    /**
+
+* Fuction to make GUI for the program
+
+*
+
+*/
+
+    public void makeGui(){
+
+
+        myFrame = new Frame("Assignment 1 Java 4-cse-A1");
+
+        myFrame.setBackground(Color.white);
+
+        myFrame.setSize(900,600);
+
+        myFrame.setLayout(new GridLayout(8,1));
+
+
+/**
+
+* This is used to close the window upon clicking cross button
+
+*/
+
+        myFrame.addWindowListener(new WindowAdapter() {
+
+            public void windowClosing(WindowEvent windowEvent){
+
+                System.exit(0);
+
+            }
+
+        });
+
+
+
+        topLabel = new Label();
+
+        topLabel.setAlignment(Label.CENTER);
+
+        message = new Label();
+
+        message.setAlignment(Label.CENTER);
+
+        errorMessage = new Label();
+
+        errorMessage.setAlignment(Label.CENTER);
+
+        bottomLabel1 = new Label();
+
+        bottomLabel1.setAlignment(Label.CENTER);
+
+        bottomlabel2 = new Label();
+
+        bottomlabel2.setAlignment(Label.CENTER);
+
+
+        panel1 = new Panel();
+
+        panel1.setLayout(new FlowLayout());
+
+        panel2 = new Panel();
+
+        panel2.setLayout(new FlowLayout());
+
+
+        myFrame.add(topLabel);
+
+        myFrame.add(panel1);
+
+        myFrame.add(bottomLabel1);
+
+        myFrame.add(bottomlabel2);
+
+        myFrame.add(message);
+
+        myFrame.add(errorMessage);
+
+        myFrame.add(panel2);
+
+
+
+        myFrame.setVisible(true);
+
+        topLabel.setText("Click on BROWSE button to select a file. To see final files , Click on SAVED FILES button");
+
+    }
+
+
+    /**
+
+* This function checks the operating System type. This function is needed to make the program platform independent.
+
+* This program however supports only Windows, Mac , unix and Linux Operating Systems
+
+*
+
+* @return It returns the suitable path based on the Operating System
+
+*/
+
+
+    public static String checkOS() {
+
+        String store = "";
+
+        String OS = System.getProperty("os.name").toLowerCase();
+
+        if(OS.indexOf("win") >= 0){
+
+            store = "C:/";
+
+        } else if(OS.indexOf("nix") >= 0 || OS.indexOf("nux") >= 0 || OS.indexOf("aix") > 0 ){
+
+            store = "/home/";
+
+        } else if(OS.indexOf("mac") >= 0){
+
+            store = "/home/";
+
+        } else {
+
+            return null;
+
+        }
+
+        return store;
+
+    }
+
+
+    /**
+
+*
+
+* @param fileName Full path of the file whose extension is to be found
+
+* @return the extension like txt, java, mp3 etc
+
+*/
+
+
+    publ… Read more
+5:51 PM
+DOCUMENTATION
+
+-----------------
+
+
+The code contains the nessary documentation according to the rules.
+
+
+The documentation can be generated in the form of a web page by typing:
+
+
+javadoc Main.java
+
+
+in the terminal (as in linux) or cmd ( as in windows), this will generate the documentation.
+5:51 AM
+TODAY
+1:36 PM
+
